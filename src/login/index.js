@@ -3,7 +3,7 @@ const cloud = require('wx-server-sdk')
 const rq = require('request-promise')
 
 cloud.init({
-    env: 'sea-ai'
+    env: 'xxxxxx'  // 你的环境id
 })
 
 // 云函数入口函数

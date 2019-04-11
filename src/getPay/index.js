@@ -2,7 +2,7 @@ const rp = require('request-promise')
 const crypto = require('crypto')
 const cloud = require('wx-server-sdk')
 cloud.init({
-    env: 'sea-ai'
+    env: 'xxxxxx'  // 你的环境id
 })
 
 const key = "xxxxxxxxxxxxxxxxxxxx" //这是商户的key，不是小程序的密钥。32位，必须大写。

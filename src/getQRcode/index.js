@@ -1,11 +1,5 @@
 // 云函数入口文件
-const cloud = require('wx-server-sdk')
 const QRCode = require('qrcode')
-
-cloud.init({
-    env: 'sea-ai'
-})
-
 
 // 云函数入口函数
 /**

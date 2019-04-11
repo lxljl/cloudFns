@@ -3,7 +3,7 @@ const cloud = require('wx-server-sdk')
 const crypto = require('crypto')
 
 cloud.init({
-    env: 'sea-ai' // 修改为你的环境id
+    env: 'xxxxxx'  // 你的环境id
 })
 
 // 云函数入口函数

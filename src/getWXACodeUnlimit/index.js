@@ -1,9 +1,8 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
-const rq = require('request-promise')
 
 cloud.init({
-    env: 'sea-ai'
+    env: 'xxxxxx'  // 你的环境id
 })
 
 // 云函数入口函数
@@ -15,12 +14,6 @@ exports.main = async(event, context) => {
     return new Promise(async (resolve, reject) => {
         try {
             if(!event.scene) throw {code: 7400, data: [], info: '场景信息不能为空！'}
-            // 获取小程序token
-            let {
-                data:{
-                    access_token
-                }
-            } = await db.collection('token').doc('token').get()
             // 一维码信息
             let scene = event.scene,
                 page = event.page,
@@ -29,24 +22,33 @@ exports.main = async(event, context) => {
                 line_color = event.line_color || {"r":0,"g":0,"b":0},
                 is_hyaline = event.is_hyaline || false
             // 请求微信获取图像
-            let result = await rq({
-                method: 'POST',
-                url: `https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=${access_token}`,
-                body: {
-                    scene,
-                    width,
-                    page,
-                    auto_color,
-                    line_color,
-                    is_hyaline
-                },
-                encoding: null,
-                json: true
+            let {
+                buffer,
+                errcode,
+                contentType
+            } = await cloud.openapi.wxacode.getUnlimited({
+                scene,
+                width,
+                page,
+                auto_color,
+                line_color,
+                is_hyaline
             })
+            // 成功返回以下格式
+            // {
+            //     "errcode": 0,
+            //     "errmsg": "ok",
+            //     "contentType": "image/jpeg",
+            //     "buffer": Buffer
+            // }
+            if(errcode !== 0) throw {code: 7408, data: [], info: '调用失败！'}
             // 成功返回
             resolve({
                 code: 0,
-                data: `data:image/jpg;base64,${new Buffer(result).toString('base64')}`,
+                data: {
+                    url: `data:image/jpg;base64,${new Buffer(buffer).toString('base64')}`,
+                    contentType
+                },
                 info: '操作成功！'
             })
         } catch (error) {
