@@ -41,6 +41,7 @@
 * getUserInfo --- [获取用户信息](https://github.com/lxljl/cloudFns/blob/master/doc/getUserInfo.md)
 * setUserInfo --- [设置用户信息](https://github.com/lxljl/cloudFns/blob/master/doc/setUserInfo.md)
 * decode --- [微信用户信息解密](https://github.com/lxljl/cloudFns/blob/master/doc/decode.md)
+* sendSms --- [发送手机短信验证码](https://github.com/lxljl/cloudFns/blob/master/doc/sendSms.md)
 * getPay --- [微信支付模板](https://github.com/lxljl/cloudFns/blob/master/doc/getPay.md)
 * getWXACodeUnlimit --- [微信一维码](https://github.com/lxljl/cloudFns/blob/master/doc/getWXACodeUnlimit.md)
 * setToken --- [微信access_token](https://github.com/lxljl/cloudFns/blob/master/doc/setToken.md)
